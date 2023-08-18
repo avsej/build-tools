@@ -110,6 +110,11 @@ curl --etag-compare etag.txt --etag-save etag.txt --remote-name https://curl.se/
 curl --remote-name --time-cond cacert.pem https://curl.se/ca/cacert.pem || \
 curl --remote-name --time-cond cacert.pem --insecure https://curl.se/ca/cacert.pem
 
+if [ "${PLATFORM}x" = "macosx" ]
+then
+    brew install pkg-config
+fi
+
 echo "Downloading PHP $PHPVER"
 [ ! -e  $DLDIR/php-src-$PHPVER.tar.bz2 ]  && curl --cacert cacert.pem -Lo $DLDIR/php-src-$PHPVER.tar.bz2 "http://php.net/get/php-$PHPVER.tar.bz2/from/this/mirror"
 [ ! -e  $DLDIR/php-phpunit.phar ]         && curl --cacert cacert.pem -Lo $DLDIR/php-phpunit.phar "https://phar.phpunit.de/phpunit-$PHPUNIT_VER.phar"
