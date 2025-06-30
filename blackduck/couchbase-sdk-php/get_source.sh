@@ -60,14 +60,15 @@ if [[ ! -z "${TARBALL}" ]]
 then
     tar xf ${TARBALL}
     TARBALL_CONTENTS_DIR=$(basename ${TARBALL} .tgz)
-    for MANIFEST in $(find . -name 'couchbase-sdk-php-black-duck-manifest.yaml')
+    pwd
+    for MANIFEST in $(find . -name 'couchbase-sdk-*-black-duck-manifest.yaml')
     do
-        cp ${MANIFEST} ${TARBALL_CONTENTS_DIR}
+        cp -v ${MANIFEST} ${TARBALL_CONTENTS_DIR}
     done
 
     rm ${TARBALL}
     rm -rf couchbase-php-client
     mv ${TARBALL_CONTENTS_DIR} couchbase-php-client
-    cp package.xml couchbase-php-client/
+    cp -v package.xml couchbase-php-client/
     rm -rf couchbase-php-client/src/deps
 fi
