@@ -9,7 +9,7 @@ set BLD_NUM=%3
 
 rem Check out the PHP Windows SDK from our fork
 rem php-sdk-2.2.0 was the newest tag as of Jan. 14 2020
-git clone ssh://git@github.com/couchbasedeps/php-sdk-binary-tools -b php-sdk-2.2.0 || goto :error
+git clone https://github.com/couchbasedeps/php-sdk-binary-tools -b php-sdk-2.2.0 || goto :error
 
 mkdir work
 
@@ -21,6 +21,8 @@ if "%PHPVER:~0,3%"=="7.3" (
 ) else if "%PHPVER:~0,3%"=="8.0" (
     set VC=vs16
 ) else if "%PHPVER:~0,3%"=="8.1" (
+    set VC=vs16
+) else if "%PHPVER:~0,3%"=="8.2" (
     set VC=vs16
 ) else (
     echo Unsupported PHP version
